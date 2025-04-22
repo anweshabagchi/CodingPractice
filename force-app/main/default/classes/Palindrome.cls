@@ -1,31 +1,31 @@
 public class Palindrome {
-public static Boolean StringPalindrom(String inputString){
+public static Boolean StringPalindrome(String inputString){
     
-    Boolean result;
+    Boolean result = true;
     Integer i=0;
     Integer j; 
     
-    if(inputString==null || inputString.length()==0){
-        System.debug('null or blank');
-        result= false;
+    if(String.isEmpty(inputString)){
+        System.debug('Input string is null or empty');
+        result = false;
         return result;
     }
-    j= inputString.length()-1;
+    // Normalize the input string: convert to lowercase and remove non-alphanumeric characters
+    inputString = inputString.toLowerCase().replaceAll('[^a-z0-9]', '');
+    j = inputString.length() - 1;
     
-    for(;;){
-        if(inputString.charAt(i)!=inputString.charAt(j)){
-            System.debug('Not Palindrome');
+    while(i <= j){
+        if(inputString.charAt(i) != inputString.charAt(j)){
+            System.debug('Input string is not a palindrome');
             result = false;
             break;
         }
-        i+=1;
-        j-=1;
-        if(j<i){
-            
-            System.debug('Palindrome');
-            result = true;
-            break;
-        }
+        i += 1;
+        j -= 1;
+    }
+    if(i > j){
+        System.debug('Input string is a palindrome');
+        result = true;
     }
     return result;
 }
